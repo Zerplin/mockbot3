@@ -1,82 +1,57 @@
-
-
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+var rdy = 1;
+var mockList = [];
 require('dotenv').config();
 
-var msg;
-var msgL;
-var oL=2;
-var reply;
-var reply = "";
-var wL;
-var noot = 0;
-
-function checkNoot(word)
+function mockingSpongebob(text) 
 {
-    wL=word.length
-    oL=2;
-    if(word.charAt(0)=="n" && word.charAt(1)=="o" & word.charAt(2)=="o" && word.charAt(wL-1)=="t")
-    {
-        console.log("is noot, check")
-
-        noot = 1;
-
-        while(word.charAt(oL)=="o")
-        {
-            oL++;
-        }
-        
-        console.log("ooo lenght= "+oL);
-        
-
-        reply = reply.concat("N".concat("O".repeat(oL-1)).concat("T").concat(" "));
-
-        console.log("curr reply ="+reply+"\n");
-
-        //message.channel.sendMessage("**"+reply+"**");
-
-        //oL = 2;
-        //reply ="N";
+    var res = "";
+    var next = Math.floor(Math.random() * 3) + 1; // random number from [1,3]
+    for(var i = 0; i < text.length; ++i) {
+      if(i === next) {
+        res += text.charAt(i).toUpperCase();
+        next += Math.floor(Math.random() * 3) + 1; 
+      } else {
+        res += text.charAt(i);
+      }
     }
+    return res;
 }
 
-
-function stringSplit(string)
+bot.on('message', (message)=>
 {
-    var split = string.split(" ");
 
-    for(wI=0;wI<split.length;wI++)
+    if(message.mentions.users.first()&&!message.author.bot)
     {
-        console.log(split[wI]+" "+wI+"\n");
+        console.log("mention check");
+        if(message.content.toLowerCase().includes("stop"))
+        {
+            console.log("before removal "+mockList);
+            mockList = mockList.filter(user => user!=message.mentions.users.first().id);
+            console.log("to be removed "+message.mentions.users.first().id);
+            console.log("removed "+mockList);
+        }
+
+        else if(message.content.toLowerCase().includes("mock"))
+        {
+            mockList.push(message.mentions.users.first().id)
+
+            console.log("added "+mockList);
+        }
+        
+    }
     
-        var word=split[wI].toLowerCase();
-
-        checkNoot(word);
-    }
-
-
-}
-
-bot.on('message', (message)=> 
-{
-    if(!message.author.bot)
+    if(!message.author.bot && mockList.includes(message.author.id))
     {
-        msg = message.content.toLowerCase();
-        //msgL = msg.length;
-        stringSplit(msg)
-
-        if(noot==1)
-        {
-
-            noot=0;
-            message.channel.send("**"+reply+"**");
-            reply="";
-        }
+        message.channel.send(mockingSpongebob(message.content.toLowerCase()));
     }
-
+    
 });
 
+
 bot.login(process.env.token);
-//console.log(process.env.token);
+
 console.log("check");
+
+
