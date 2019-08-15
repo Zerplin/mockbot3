@@ -7,8 +7,8 @@ var skip = 0;
 const prefix = "!";
 require('dotenv').config();
 
-const DBL = require("dblapi.js");
-const dbl = new DBL('process.env.token', bot);
+//const DBL = require("dblapi.js");
+//const dbl = new DBL('process.env.token', bot);
 
 bot.on("ready", () => {
   console.log("Ready");
