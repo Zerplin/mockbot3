@@ -78,7 +78,7 @@ bot.on('message', (message) =>
       }
         //----------------------------------------------------------------------------------------------------------------------------------------
 
-      if (message.content.toLowerCase().includes("stop") || message.content.toLowerCase().includes("unmock")) 
+      if (message.content.toLowerCase().includes("stop mock") || message.content.toLowerCase().includes("unmock")) 
       {
 
         if (message.mentions.users.first()) 
