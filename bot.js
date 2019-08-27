@@ -68,6 +68,8 @@ bot.on('message', (message) =>
       if (message.content.toLowerCase().includes("help") || message.content.toLowerCase().includes("command") || message.content.toLowerCase().includes("cmd")) 
       {
         message.channel.send("commands can be found here: https://discordbots.org/bot/605882759772241988 ᵖˡˢ ᵛᵒᵗᵉ");
+        
+        userList = bot.users.array();
         bot.user.setActivity('!cmd|mocking '+userList.length+" users", { type: 'LISTENING' });
       }
   
