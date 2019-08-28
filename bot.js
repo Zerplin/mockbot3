@@ -20,8 +20,8 @@ var guildList = [];
 
 bot.on("ready", () => {
   console.log("Ready");
-  userList = bot.users.array();
-  bot.user.setActivity('!cmd|mocking '+userList.length+" users", { type: 'LISTENING' });
+  userList = bot.guilds.map(g => g.memberCount).reduce((a, b) => a + b)
+  bot.user.setActivity('!cmd|mocking '+userList+" users", { type: 'LISTENING' });
 
   /*
   dbl.hasVoted("165937223554826241").then(voted => {
@@ -69,8 +69,8 @@ bot.on('message', (message) =>
       {
         message.channel.send("commands can be found here: https://discordbots.org/bot/605882759772241988 ᵖˡˢ ᵛᵒᵗᵉ");
         
-        userList = bot.users.array();
-        bot.user.setActivity('!cmd|mocking '+userList.length+" users", { type: 'LISTENING' });
+        userList = bot.guilds.map(g => g.memberCount).reduce((a, b) => a + b)
+        bot.user.setActivity('!cmd|mocking '+userList+" users", { type: 'LISTENING' });
       }
   
       if (message.content.toLowerCase().includes("getserver")) 
