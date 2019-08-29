@@ -10,7 +10,7 @@ const prefix = "!";
 require('dotenv').config();
 
 const DBL = require("dblapi.js");
-const dbl = new DBL(process.env.apikey);
+const dbl = new DBL(process.env.apikey, bot);
 
 //talkedRecently = new Set();
 talkedRecently = [];
