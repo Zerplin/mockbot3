@@ -112,6 +112,7 @@ bot.on('message', (message) =>
 
           message.channel.send(mockingSpongebob("unmocking " + message.author));
         }
+        return(null);
       }
 
       if(message.content.toLowerCase().startsWith("!mock cooldown"))
@@ -230,6 +231,15 @@ bot.on('message', (message) =>
         //--------------------------------------------------------------------------------------------------------
         else if (message.content.toLowerCase().includes("mock")) 
         {
+          
+          if(message.content.length>6)
+          {
+            console.log("embedded mock :"+message.content);
+            message.channel.send(mockingSpongebob(message.content.slice(6)));
+
+            return(null);
+          }
+          
           message.channel.fetchMessages({ limit: 2 }).then(msg => 
           {
             console.log("last msg " + msg.last().content);
