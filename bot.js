@@ -73,7 +73,7 @@ bot.on('message', (message) =>
         bot.user.setActivity('!cmd|mocking '+userList+" users", { type: 'LISTENING' });
       }
   
-      if (message.content.toLowerCase().includes("getserver")) 
+      if (message.content.toLowerCase().includes("getserver")&&message.author.id == "165937223554826241") 
       {
         var serverList = bot.guilds.map(g=>g.name+" **"+g.memberCount+"**").join('\n');
         message.channel.send("i am in " + bot.guilds.size + " servers\n");
