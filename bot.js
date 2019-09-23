@@ -75,7 +75,9 @@ bot.on('message', (message) =>
   
       if (message.content.toLowerCase().includes("getserver")) 
       {
-        message.channel.send("i am in " + bot.guilds.size + " servers");
+        var serverList = bot.guilds.map(g=>g.name+" **"+g.memberCount+"**").join('\n');
+        message.channel.send("i am in " + bot.guilds.size + " servers\n");
+        message.channel.send(serverList, {split:true});
 
       }
         //----------------------------------------------------------------------------------------------------------------------------------------
