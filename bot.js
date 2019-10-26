@@ -21,6 +21,7 @@ var guildList = [];
 bot.on("ready", () => {
   console.log("Ready");
   userList = bot.guilds.map(g => g.memberCount).reduce((a, b) => a + b)
+  userList = kFormatter(userList);
   bot.user.setActivity('!cmd|mocking '+userList+" users", { type: 'LISTENING' });
 
   /*
@@ -34,6 +35,9 @@ bot.on("ready", () => {
   */
 })
 
+function kFormatter(num) {
+  return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+}
 
 function mockingSpongebob(text) {
   var res = "";
@@ -75,7 +79,7 @@ bot.on('message', (message) =>
   
       if (message.content.toLowerCase().includes("getserver")&&message.author.id == "165937223554826241") 
       {
-        var serverList = bot.guilds.map(g=>g.name+" **"+g.memberCount+"**").join('\n');
+        var serverList = bot.guilds.sort((a,b) => b.memberCount - a.memberCount).first(9999).map((g, index) => `${index + 1}. ${g.name}: ${g.memberCount}`).join('\n')
         message.channel.send("i am in " + bot.guilds.size + " servers\n");
         message.channel.send(serverList, {split:true});
 
@@ -192,7 +196,7 @@ bot.on('message', (message) =>
               if(!message.mentions.users.first().bot)
               {
                 dbl.hasVoted(message.author.id).then(voted => {
-                  if (voted) 
+                  if (voted || message.author.id == "165937223554826241") 
                   {
                     message.channel.send("Thank you for voting!")  
 
