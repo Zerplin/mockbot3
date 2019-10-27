@@ -18,6 +18,10 @@ talkedRecently = [];
 var guildCooldown = [];
 var guildList = [];
 
+function kFormatter(num) {
+  return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
+}
+
 bot.on("ready", () => {
   console.log("Ready");
   userList = bot.guilds.map(g => g.memberCount).reduce((a, b) => a + b)
@@ -34,10 +38,6 @@ bot.on("ready", () => {
   });
   */
 })
-
-function kFormatter(num) {
-  return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
-}
 
 function mockingSpongebob(text) {
   var res = "";
