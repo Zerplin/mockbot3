@@ -71,7 +71,7 @@ bot.on('message', (message) =>
 
       if (message.content.toLowerCase().includes("help") || message.content.toLowerCase().includes("command") || message.content.toLowerCase().includes("cmd")) 
       {
-        message.channel.send("commands can be found here: https://discordbots.org/bot/605882759772241988 ᵖˡˢ ᵛᵒᵗᵉ");
+        message.channel.send("commands can be found here: https://discordbots.org/bot/605882759772241988 ᵖˡˢ ᵛᵒᵗᵉ \nAdd me to your own server http://bit.ly/MockInv");
         
         userList = bot.guilds.map(g => g.memberCount).reduce((a, b) => a + b)
         userList = kFormatter(userList);
