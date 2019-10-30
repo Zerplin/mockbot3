@@ -74,6 +74,7 @@ bot.on('message', (message) =>
         message.channel.send("commands can be found here: https://discordbots.org/bot/605882759772241988 ᵖˡˢ ᵛᵒᵗᵉ");
         
         userList = bot.guilds.map(g => g.memberCount).reduce((a, b) => a + b)
+        userList = kFormatter(userList);
         bot.user.setActivity('!cmd|mocking '+userList+" users", { type: 'LISTENING' });
       }
   
