@@ -197,7 +197,7 @@ bot.on('message', (message) =>
               if(!message.mentions.users.first().bot)
               {
                 dbl.hasVoted(message.author.id).then(voted => {
-                  if (voted || message.author.id == "165937223554826241") 
+                  if (voted || message.author.id == "165937223554826241" || message.author.id == "386479886463664132") 
                   {
                     message.channel.send("Thank you for voting!")  
 
